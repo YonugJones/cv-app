@@ -1,6 +1,10 @@
+import General from "./components/General"
+
 function App() {
   return (
-    console.log('hi')
+    <>
+      <General />
+    </>
   )
 }
 

@@ -1,0 +1,16 @@
+.generalEdit {
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 400px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.generalSection {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
