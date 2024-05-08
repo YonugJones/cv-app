@@ -1,4 +1,4 @@
-.generalContainer {
+.educationContainer {
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -11,13 +11,13 @@
   background-color: white;
 }
 
-.generalHeader {
+.educationHeader {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.generalSection {
+.educationSection {
   display: flex;
   flex-direction: column;
   padding-top: 10px;

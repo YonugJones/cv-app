@@ -1,4 +1,4 @@
-.generalContainer {
+.experienceContainer {
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -11,13 +11,13 @@
   background-color: white;
 }
 
-.generalHeader {
+.experienceHeader {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.generalSection {
+.experienceSection {
   display: flex;
   flex-direction: column;
   padding-top: 10px;
