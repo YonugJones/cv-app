@@ -1,56 +1,53 @@
-import { useState } from "react"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAddressCard, faExpand, faCompress } from "@fortawesome/free-solid-svg-icons";
 import styles from '../styles/General.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 
-export default function General() {
-  const [expanded, setExpanded] = useState(true);
+export default function General({ generalInfo, setGeneralInfo }) {
 
-  const toggleExpanded = () => {
-    setExpanded(!expanded);
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setGeneralInfo((prevInfo) => ({
+      ...prevInfo,
+      [name]: value
+    }))
   }
 
   return (
     <div className={styles.generalContainer}>
       <div className={styles.generalHeader}>
         <FontAwesomeIcon icon={faAddressCard} />
-        <h2>General Information</h2>
+        <h2>General</h2>
       </div>
-      {expanded && (
-        <form className="generalForm" >
-        <GeneralInput label='Name: ' name='name' autoComplete='on' />
-        <GeneralInput label='Email: ' name='email' autoComplete='on' />
-        <GeneralInput label='Phone: ' name='phone' autoComplete='on' />
-        <GeneralInput label='Address: ' name='address' autoComplete='on' />
-        </form>
-      )}
-      <div className={styles.buttonContainer}>
-        <button onClick={toggleExpanded}>
-          {expanded ? <FontAwesomeIcon icon={faCompress} /> : <FontAwesomeIcon icon={faExpand} />} {expanded ? 'Hide' : 'Expand'}
-        </button>
+      <div className={styles.generalBody}>
+        <label>Name:</label>
+        <input 
+          type="text" 
+          name="name" 
+          value={generalInfo.name} 
+          onChange={handleChange} 
+        />
+        <label>Email:</label>
+        <input 
+          type="email" 
+          name="email" 
+          value={generalInfo.email} 
+          onChange={handleChange} 
+        />
+        <label>Phone:</label>
+        <input 
+          type="text" 
+          name="phone" 
+          value={generalInfo.phone} 
+          onChange={handleChange} 
+        />
+        <label>Address:</label>
+        <input 
+          type="text" 
+          name="address" 
+          value={generalInfo.address} 
+          onChange={handleChange} 
+        />
       </div>
-
-    </div>    
+    </div>
   )
 }
-
-function GeneralInput ({ label, name }) {
-  const [text, setText] = useState('');
-
-  function handleChange(e) {
-    setText(e.target.value);
-  }
-
-  return (
-    <label className={styles.generalSection}>
-      {label}
-      {' '}
-      <input 
-        name={name}
-        value={text}
-        onChange={handleChange}
-      />
-    </label>
-  )
-}
-

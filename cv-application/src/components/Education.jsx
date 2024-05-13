@@ -1,13 +1,15 @@
-import { useState } from "react"
+import styles from '../styles/Education.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSchool, faExpand, faCompress } from "@fortawesome/free-solid-svg-icons";
-import styles from '../styles/Education.module.css'
+import { faSchool} from "@fortawesome/free-solid-svg-icons";
 
-export default function Education() {
-  const [expanded, setExpanded] = useState(true);
+export default function Education({ educationInfo, setEducationInfo }) {
 
-  const toggleExpanded = () => {
-    setExpanded(!expanded);
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setEducationInfo((prevInfo) => ({
+      ...prevInfo,
+      [name]: value  
+    }))
   }
 
   return (
@@ -16,40 +18,16 @@ export default function Education() {
         <FontAwesomeIcon icon={faSchool} />
         <h2>Education</h2>
       </div>
-      {expanded && (
-        <form className="educationForm">
-          <EducationInput label="School: " name="school" autoComplete="on" />
-          <EducationInput label="Location: " name="location" autoComplete="on" />
-          <EducationInput label="Degree: " name="degree" autoComplete="on" />
-          <EducationInput label="Start: " name="start" autoComplete="on" />
-          <EducationInput label="End: " name="end" autoComplete="on" />
-        </form>
-      )}
-      <div className={styles.buttonContainer}> 
-        <button onClick={toggleExpanded}>
-          {expanded ? <FontAwesomeIcon icon={faCompress} /> : <FontAwesomeIcon icon={faExpand} />} {expanded ? 'Hide' : 'Expand'}
-        </button>
+      <div className={styles.educationBody}>
+        <label>School:</label>
+        <input type="text" name="school" value={educationInfo.school} onChange={handleChange} />
+        <label>Degree:</label>
+        <input type="text" name="degree" value={educationInfo.degree} onChange={handleChange} />
+        <label>Start Date:</label>
+        <input type="text" name="startDate" value={educationInfo.startDate} onChange={handleChange} />
+        <label>End Date:</label>
+        <input type="text" name="endDate" value={educationInfo.endDate} onChange={handleChange} />
       </div>
     </div>
-  )
-}
-
-function EducationInput ({ label, name }) {
-  const [text, setText] = useState('');
-
-  function handleChange(e) {
-    setText(e.target.value);
-  }
-
-  return (
-    <label className={styles.educationSection}>
-      {label}
-      {' '}
-      <input 
-        name={name}
-        value={text}
-        onChange={handleChange}
-      />
-    </label>
   )
 }
